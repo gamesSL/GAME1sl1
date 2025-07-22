@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>bloger.leon</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffde59, #ffffff, #4da6ff);
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffffcc;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+            text-shadow: 2px 2px #0055ff;
+        }
+
+        textarea, select, button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 12px;
+            border: 2px solid #ffcc00;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4da6ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #3399ff;
+        }
+
+        .stats {
+            font-size: 22px;
+            margin-top: 20px;
+            background: #fffbe6;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #ffcc00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Блогерская Империя 🎥</h1>
+    <div class="stats">
+        Подписчики: <span id="subs">0</span> 💛
+    </div>
+
+    <h3>Придумай сюжет для видео:</h3>
+    <textarea id="story" placeholder="Например: Челлендж '24 часа без телефона' или 'Пранк над друзьями'"></textarea>
+
+    <h3>Выбери стиль монтажа:</h3>
+    <select id="edit-style">
+        <option value="funny">Весёлый монтаж 🤣</option>
+        <option value="dramatic">Драматический монтаж 🎭</option>
+        <option value="epic">Эпичный монтаж 💥</option>
+    </select>
+
+    <button onclick="uploadVideo()">Опубликовать видео 🚀</button>
+
+    <div class="stats" id="result"></div>
+</div>
+
+<script>
+    let subs = 0;
+
+    function uploadVideo() {
+        const story = document.getElementById('story').value.trim();
+        const style = document.getElementById('edit-style').value;
+        let resultText = '';
+
+        if (story.length < 10) {
+            resultText = "📢 Напиши интересный сюжет для видео!";
+            document.getElementById('result').innerHTML = resultText;
+            return;
+        }
+
+        let gain = Math.floor(Math.random() * 500 + 100);
+
+        if (style === "funny") {
+            gain += 100;
+            resultText = "😂 Видео с весёлым монтажом взлетело!";
+        } else if (style === "dramatic") {
+            gain += 50;
+            resultText = "🎭 Драматический сюжет зацепил аудиторию.";
+        } else if (style === "epic") {
+            gain += 150;
+            resultText = "💥 Эпичный монтаж взорвал тренды!";
+        }
+
+        subs += gain;
+        document.getElementById('subs').innerText = subs;
+        document.getElementById('result').innerHTML = ${resultText}<br>Вы набрали +${gain} подписчиков! 🚀;
+    }
+</script>
+
+</body>
+</html>
